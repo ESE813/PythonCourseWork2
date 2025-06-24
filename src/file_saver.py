@@ -27,11 +27,10 @@ class VacancySave(ABC):
 
 class JSONSaver(VacancySave, ABC):
     def __init__(self, filename: str = "vacancies.json"):
-        self.__filename =filename
+        self.__filename = filename
         if not os.path.exists(self.__filename):
-            with open(self.__filename, 'w') as f:
+            with open(self.__filename, "w") as f:
                 json.dump([], f)
-
 
     def add_vacancy(self, vacancy: Vacancy):
         data = self._read_data()
@@ -41,26 +40,28 @@ class JSONSaver(VacancySave, ABC):
             self._write_data(data)
 
     def _read_data(self):
-        with open(self.__filename, 'r') as f:
+        with open(self.__filename, "r") as f:
             return json.load(f)
 
     def _write_data(self, data):
-        with open(self.__filename, 'w') as f:
+        with open(self.__filename, "w") as f:
             json.dump(data, f, ensure_ascii=False, indent=4)
-
-
 
     def get_vacancy(self, **kwargs) -> List[Vacancy]:
         data = self._read_data()
         return [
             dict_to_vacancy(item)
-            for item in data if all(str(item.get(k)).lower() == str(v).lower()
-                                    for k, v in kwargs.items())
+            for item in data
+            if all(
+                str(item.get(k)).lower() == str(v).lower() for k, v in kwargs.items()
+            )
         ]
-
 
     def delete_vacancy(self, vacancy: Vacancy):
         data = self._read_data()
-        update_data = [i for i in data if not (i["title"] == vacancy.get_title and i["url"] == vacancy.get_url)]
+        update_data = [
+            i
+            for i in data
+            if not (i["title"] == vacancy.get_title and i["url"] == vacancy.get_url)
+        ]
         self._write_data(update_data)
-

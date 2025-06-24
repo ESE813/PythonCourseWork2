@@ -5,8 +5,6 @@ from abc import ABC, abstractmethod
 from src.vacancies import Vacancy
 
 
-
-
 class Parser(ABC):
     """Абстрактный класс для работы с API"""
 
@@ -30,7 +28,6 @@ class HeadHunterAPI(Parser):
         super().__init__()
         self._base_url = "https://api.hh.ru/vacancies"
 
-
     def _connect(self, params: dict) -> dict:
 
         response = requests.get(self._base_url, params=params)
@@ -39,23 +36,22 @@ class HeadHunterAPI(Parser):
         else:
             raise Exception(f"Ошибка при подключении к HH API: {response.status_code}")
 
+    def get_vacancies(
+        self, keyword: str, page: int = 0, per_page: int = 50
+    ) -> list[dict[str, Any]]:
 
-    def get_vacancies(self, keyword: str, page: int = 0, per_page: int = 50) -> list[dict[str, Any]]:
-
-        params = {
-            "text": keyword,
-            "page": page,
-            "per_page": per_page
-        }
+        params = {"text": keyword, "page": page, "per_page": per_page}
         data = self._connect(params)
         vacancies = []
 
         for item in data.get("items", []):
-            vacancies.append({
-            "title": item.get("name"),
-            "url": item.get("url"),
-            "salary": item.get("salary", None),
-            "description": item.get("snippet", {}).get("requirement", "")
-        })
+            vacancies.append(
+                {
+                    "title": item.get("name"),
+                    "url": item.get("url"),
+                    "salary": item.get("salary", None),
+                    "description": item.get("snippet", {}).get("requirement", ""),
+                }
+            )
 
         return vacancies
