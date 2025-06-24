@@ -44,3 +44,5 @@ def test_repr_output():
         repr(v2)
         == "Vacancy('Go Dev', salary: Зарплата не указана, url: https://example.com)"
     )
+
+

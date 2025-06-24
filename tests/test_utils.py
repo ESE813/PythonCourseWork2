@@ -35,3 +35,4 @@ def test_dict_to_vacancy(sample_dict):
     assert vacancy.get_url == "https://api.hh.ru/vacancies"
     assert vacancy.get_salary == 150000
     assert vacancy.get_description == "Опыт с Django"
+

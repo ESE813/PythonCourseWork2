@@ -61,3 +61,4 @@ def test_delete_vacancy(temp_json_file, test_vacancy):
 
     data_after = saver._read_data()
     assert len(data_after) == 0
+

@@ -50,3 +50,4 @@ def test_get_top_vacancies(vacancies):
     top = get_top_vacancies(sorted_list, 2)
     assert len(top) == 2
     assert top[0].get_salary >= top[1].get_salary
+
