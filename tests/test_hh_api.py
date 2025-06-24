@@ -11,7 +11,7 @@ def test_get_vacancies(mock_connect):
                 "name": "Python Developer",
                 "url": "https://hh.ru/vacancy/123",
                 "salary": {"from": 100000, "to": 150000},
-                "snippet": {"requirement": "Опыт с Python"}
+                "snippet": {"requirement": "Опыт с Python"},
             }
         ]
     }

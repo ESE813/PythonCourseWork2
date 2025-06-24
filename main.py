@@ -12,7 +12,12 @@ hh_vacancies = hh_api.get_vacancies("Python")
 
 
 # Пример работы конструктора класса с одной вакансией
-vacancy = Vacancy("Python Developer", "<https://hh.ru/vacancy/123456>", 100000, "Требования: опыт работы от 3 лет...")
+vacancy = Vacancy(
+    "Python Developer",
+    "<https://hh.ru/vacancy/123456>",
+    100000,
+    "Требования: опыт работы от 3 лет...",
+)
 
 # Сохранение информации о вакансиях в файл
 json_saver = JSONSaver()

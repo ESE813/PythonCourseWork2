@@ -3,14 +3,11 @@ from typing import Any
 
 class Vacancy:
 
-    def __init__(self, title: str, url: str, salary: Any|None, description: str):
+    def __init__(self, title: str, url: str, salary: Any | None, description: str):
         self._title = title
         self._url = url
         self._salary = self._validate_salary(salary)
         self._description = description
-
-
-
 
     @staticmethod
     def _validate_salary(salary: Any) -> int:
@@ -35,8 +32,6 @@ class Vacancy:
     @property
     def get_description(self):
         return self._description
-
-
 
     def __lt__(self, other):
         if isinstance(other, Vacancy):
@@ -63,12 +58,7 @@ class Vacancy:
             return NotImplemented
 
     def __repr__(self):
-        salary_text = f"{self._salary}руб." if self._salary > 0 else "Зарплата не указана"
+        salary_text = (
+            f"{self._salary}руб." if self._salary > 0 else "Зарплата не указана"
+        )
         return f"Vacancy('{self._title}', salary: {salary_text}, url: {self._url})"
-
-
-
-
-
-
-
