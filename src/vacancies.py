@@ -1,16 +1,19 @@
+from typing import Any
 
-class Vacancy():
 
-    def __init__(self, title: str, url: str, salary: int|None, description: str):
-        self._title = title.strip()
-        self._url = url.strip()
+class Vacancy:
+
+    def __init__(self, title: str, url: str, salary: Any|None, description: str):
+        self._title = title
+        self._url = url
         self._salary = self._validate_salary(salary)
-        self._description = description.strip()
+        self._description = description
+
 
 
 
     @staticmethod
-    def _validate_salary(salary: int|None) -> int:
+    def _validate_salary(salary: Any) -> int:
         """Метод проверки зарплаты"""
         if isinstance(salary, (int, float)) and salary > 0:
             return salary
@@ -32,11 +35,6 @@ class Vacancy():
     @property
     def get_description(self):
         return self._description
-
-    @classmethod
-    def cast_to_object_list(cls):
-
-
 
 
 
@@ -67,6 +65,8 @@ class Vacancy():
     def __repr__(self):
         salary_text = f"{self._salary}руб." if self._salary > 0 else "Зарплата не указана"
         return f"Vacancy('{self._title}', salary: {salary_text}, url: {self._url})"
+
+
 
 
 
